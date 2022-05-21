@@ -1,0 +1,21 @@
+version: 1.0
+runtime: nodejs14
+
+build:
+  commands:
+    pre-build:
+      - echo "Deployment started..."
+    build:
+      - npm ci
+      - npm run build
+    post-build:
+      - echo "Deployment finished successfully!"
+
+run:
+  runtime-version: 14.19.0
+  command: npm run start:prod
+  network:
+    port: 3000
+  env:
+    - name: MY_VAR
+      value: my_var
